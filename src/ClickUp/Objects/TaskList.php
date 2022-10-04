@@ -95,6 +95,17 @@ class TaskList extends AbstractObject
             )
         );
     }
+    
+   public function createTaskFromTemplate(array $body, $templateId): ?Task
+    {
+        return new Task(
+            $this->client(),
+            $this->client()->post(
+                "list/{$this->id()}/taskTemplate/{$templateId}",
+                $body
+            )['task']
+        );
+    }
 
     /**
      * @return int

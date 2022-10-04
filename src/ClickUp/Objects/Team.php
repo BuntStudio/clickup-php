@@ -93,6 +93,14 @@ class Team extends AbstractObject
 
         return $this->spaces;
     }
+    
+    // @TODO create template class/collection 
+    public function templates()
+    {
+        $response = $this->client()->get("team/{$this->id()}/taskTemplate");
+
+        return $response;
+    }
 
     /**
      * @return int
