@@ -360,6 +360,16 @@ class Task extends AbstractObject
         return $this->comment;
     }
 
+    public function addComment($comment)
+    {
+        $this->client()->post("task/{$this->id()}/comment", ['comment_text' => $comment]);
+    }
+
+   public function addDependsOn($taskId)
+    {
+        $this->client()->post("task/{$this->id()}/dependency", ['depends_on' => $taskId]);
+    }
+
     /**
      * @return string
      */

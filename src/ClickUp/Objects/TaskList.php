@@ -23,6 +23,9 @@ class TaskList extends AbstractObject
 
     /* @var Folder $folder */
     private $folder;
+    
+    /* @var Space $space */
+    private $space;
 
     /**
      * @return string
@@ -40,6 +43,23 @@ class TaskList extends AbstractObject
         $this->folder = $folder;
     }
 
+    /**
+     * @return Space
+     */
+    public function getSpace(): Space
+    {
+        return $this->space;
+    }
+
+    /**
+     * @param Space $space
+     */
+    public function setSpace(Space $space)
+    {
+        $this->space = $space;
+    }
+
+    
     /**
      * @see https://jsapi.apiary.io/apis/clickup/reference/0/list/edit-list.html
      *

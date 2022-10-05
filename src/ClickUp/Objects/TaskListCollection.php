@@ -10,12 +10,22 @@ namespace ClickUp\Objects;
  */
 class TaskListCollection extends AbstractObjectCollection
 {
-    public function __construct(Folder $folder, $array)
+    public function __construct($parent, $array)
     {
-        parent::__construct($folder->client(), $array);
-        foreach ($this as $taskList) {
-            $taskList->setFolder($folder);
+        parent::__construct($parent->client(), $array);
+        //$parent cand be folder or space
+        if (get_class($parent) == 'ClickUp\Objects\Folder') {
+            foreach ($this as $taskList) {
+                $taskList->setFolder($parent);
+            }
         }
+
+        if (get_class($parent) == 'ClickUp\Objects\Space') {
+            foreach ($this as $taskList) {
+                $taskList->setSpace($parent);
+            }
+        }
+
     }
 
     /**

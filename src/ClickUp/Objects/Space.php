@@ -36,6 +36,8 @@ class Space extends AbstractObject
     /* @var FolderCollection|null $folders */
     private $folders = null;
 
+    /* @var TaskListCollection $taskLists */
+    private $taskLists = null;
     /**
      * @return string
      */
@@ -96,7 +98,23 @@ class Space extends AbstractObject
 
         return $this->folders;
     }
+    
+    /**
+     * @throws GuzzleException
+     *
+     * @return TaskList
+     */
+    public function folderlessLists(): ?TaskListCollection
+    {
+            $this->taskLists = new TaskListCollection(
+                $this,
+                $this->client()->get("space/{$this->id()}/list")['lists']
+            );
 
+        return $this->taskLists;
+    }
+
+    //https://api.clickup.com/api/v2/space/{space_id}/list
     /**
      * @return int
      */
