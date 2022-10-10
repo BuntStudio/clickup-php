@@ -126,6 +126,11 @@ class TaskList extends AbstractObject
             )['task']
         );
     }
+    
+   public function fieldsList()
+    {
+          return  $this->client()->get("list/{$this->id()}/field");
+    }
 
     /**
      * @return int
